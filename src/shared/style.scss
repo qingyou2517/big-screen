@@ -18,6 +18,7 @@ code {
 body {
   font-family: $font-hei;
   font-size: 16px;
+  background: #00020b;
 }
 
 #root{
@@ -25,6 +26,7 @@ body {
   background: lightgreen;
   display: flex;
   flex-direction: column;
+
 }
 .App{
   flex: 1;
