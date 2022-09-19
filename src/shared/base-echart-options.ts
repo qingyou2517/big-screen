@@ -1,6 +1,7 @@
 import {px} from './px';
 
 export const baseEchartOptions = {
+  //textStyle - 全局的字体样式
   textStyle: {
     fontSize: px(12),
     color: '#79839E'
