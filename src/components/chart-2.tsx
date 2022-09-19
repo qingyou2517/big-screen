@@ -9,10 +9,10 @@ export const Chart2 = () => {
     const myChart = echarts.init(divRef.current);
     myChart.setOption(createEchartsOptions({
         grid: {
-          x: px(20),
-          y: px(30),
-          x2: px(20),
-          y2: px(30),
+          x: px(85),
+          y: px(25),
+          x2: px(10),
+          y2: px(20),
         },
         xAxis: {
           type: 'value',
@@ -23,11 +23,12 @@ export const Chart2 = () => {
         yAxis: {
           axisTick: {show: false},
           type: 'category',
-          data: ['城关区公安局', '七里河区公安局', '西固区公安局', '安宁区公安局', '红古区公安局', '永登县公安局', '皋兰县公安局', '榆中县公安局', '新区公安局'],
+          data: ['城关区公安局', '七里河区公安局', '西固区公安局', '安宁区公安局', '红古区公安局', '永登县公安局', '皋兰县公安局', '榆中县公安局', '兰州新区公安局'],
           axisLabel: {
             formatter(val) {
               return val.replace('公安局', '\n公安局');
-            }
+            },
+            lineHeight:px(14),
           }
         },
         series: [{
