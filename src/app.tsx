@@ -5,7 +5,6 @@ import {Home} from './pages/home';
 import {Config} from './pages/config';
 
 function App() {
-
   return (
     <div className="App">
       <HashRouter>
