@@ -8,12 +8,12 @@ export const Chart2 = () => {
   useEffect(() => {
     const myChart = echarts.init(divRef.current);
     myChart.setOption(createEchartsOptions({
-        // grid: {
-        //   x: px(100),
-        //   y: px(40),
-        //   x2: px(40),
-        //   y2: px(40),
-        // },
+        grid: {
+          x: px(20),
+          y: px(30),
+          x2: px(20),
+          y2: px(30),
+        },
         xAxis: {
           type: 'value',
           boundaryGap: [0, 0.01],
@@ -33,13 +33,35 @@ export const Chart2 = () => {
         series: [{
           name: '2021年',
           type: 'bar',
-          data: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+          data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          itemStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                offset: 0,
+                color: '#2034f9'
+              }, {
+                offset: 1,
+                color: '#04a1ff'
+              }]),
+            }
+          }
         },
-          {
-            name: '2022年',
-            type: 'bar',
-            data: [2, 3, 4, 5, 6, 7, 8, 9, 10]
-          }]
+        {
+          name: '2022年',
+          type: 'bar',
+          data: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+          itemStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                offset: 0,
+                color: '#b92ae8'
+              }, {
+                offset: 1,
+                color: '#6773e7'
+              }]),
+            }
+          }
+        }]
       }
     ));
   }, []);
@@ -50,7 +72,7 @@ export const Chart2 = () => {
       <div ref={divRef} className="chart"/>
       <div className="legend">
         <span className="first"/> 破案排名1
-        <span className="second"/> 破案排名1
+        <span className="second"/> 破案排名2
       </div>
     </div>
   );
