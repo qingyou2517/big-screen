@@ -2,12 +2,15 @@ import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import {rand} from '../shared/rand';
 
 export const Chart9 = () => {
   const divRef = useRef(null);
-  useEffect(() => {
-    const myChart = echarts.init(divRef.current);
-    myChart.setOption(createEchartsOptions({
+  const myChart = useRef(null);
+  const data = [1, 14, 20, 24, 20, 15, 5, 1];
+
+  const x = (data) => {
+    myChart.current.setOption(createEchartsOptions({
       color: '#F7A110',
       grid: {
         x: px(20),
@@ -29,17 +32,17 @@ export const Chart9 = () => {
         splitLine: {lineStyle: {color: '#073E78'}},
         axisLabel: {
           formatter(val) {
-            return val * 100 + '%';
+            let sum = 0;
+            for (let i = 0; i < data.length; i++) {
+              sum += data[i];
+            }
+            return (val / sum * 100).toFixed(0) + '%';
           }
         }
       },
       series: [{
         type: 'line',
-        data: [
-          0.01, 0.14, 0.20,
-          0.24, 0.20, 0.15,
-          0.05, 0.01
-        ],
+        data: data,
         symbol: 'circle',
         symbolSize: px(12),
         lineStyle: {width: px(2)},
@@ -54,6 +57,29 @@ export const Chart9 = () => {
         }
       }]
     }));
+  };
+  useEffect(() => {
+    myChart.current = echarts.init(divRef.current);
+    x(data);
+  }, []);
+
+  useEffect(() => {
+    setInterval(() => {
+      const createData = (data) => {
+        const num = rand(1, 4, 1)[0];
+        const array = rand(6, 20, 8);
+        for (let i = 0; i < data.length-1; i++) {
+          data[i] = array[i];
+        }
+        data[0] = num;
+        data[data.length - 3] = num+5;
+        data[data.length - 2] = num+3;
+        data[data.length - 1] = num;
+        return data;
+      };
+      const newData = createData(data);
+      x(newData);
+    }, 3000);
   }, []);
 
   return (
