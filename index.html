@@ -27,10 +27,19 @@
       let mt = dt.getMonth() + 1
       let day = dt.getDate()
       let h = dt.getHours()  //获取时
+      h = h < 10 ? '0' + h : h
       let m = dt.getMinutes()  //获取分
+      m = m < 10 ? '0' + m : m
       let s = dt.getSeconds()  //获取秒
+      s = s < 10 ? '0' + s : s
+      //获取星期几
+      let hash = ['日', '一', '二', '三', '四', '五', '六']
+      const week = new Date().getDay()
+      const str = '周' + hash[week]
+      document.querySelector('.showTime').innerHTML = h + ':' + m + ':' + s
+      document.querySelector('.showDate').innerHTML = y + ' 年 ' + mt + ' 月 ' + day + ' 日 '
+      document.querySelector('.showWeekday').innerHTML=str
 
-      document.querySelector('.showTime').innerHTML = y + ' 年 ' + mt + ' 月 ' + day + ' 日 ' + '\t' + h + '：' + m + '：' + s
       t = setTimeout(time, 1000)  //设定定时器，循环运行
     }
   </script>

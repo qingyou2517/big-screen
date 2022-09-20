@@ -22,7 +22,9 @@ export const Home = () => {
     <div className="home">
       <header style={{backgroundImage: `url(${headerBg})`}}/>
       <div className='遮挡'></div>
+      <div className='showDate'></div>
       <div className='showTime'></div>
+      <div className='showWeekday'></div>
       <main>
         <section className="section1">
           <Chart1 />
@@ -68,7 +70,7 @@ export const Home = () => {
         </section>
       </main>
       <footer>
-        &copy; qingyou 2021-{year}
+        &copy; qingyou {year-1}-{year}
       </footer>
     </div>
   );

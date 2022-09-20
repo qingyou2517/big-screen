@@ -1,6 +1,8 @@
 import React from 'react';
 
 export const Chart5 = () => {
+  const date = new Date();
+  const y = date.getFullYear();
   return (
     <div className="战果">
       <h2>往年战果数对比</h2>
@@ -13,13 +15,13 @@ export const Chart5 = () => {
         </thead>
         <tbody>
         <tr>
-          <td>2015</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+          <td>{y-2}</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
         </tr>
         <tr>
-          <td>2016</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+          <td>{y-1}</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
         </tr>
         <tr>
-          <td>2017</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+          <td>{y}</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
         </tr>
         </tbody>
       </table>
