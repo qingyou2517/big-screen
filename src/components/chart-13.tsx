@@ -2,9 +2,11 @@ import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import {rand} from '../shared/rand';
 
 export const Chart13 = () => {
   const divRef = useRef(null);
+  const myChart = useRef(null);
   const data = [
     {value: 8, name: '东岗路'},
     {value: 8, name: '段家滩'},
@@ -16,9 +18,8 @@ export const Chart13 = () => {
     {value: 14, name: '酒泉路'},
     {value: 16, name: '天水路'},
   ];
-  useEffect(() => {
-    const myChart = echarts.init(divRef.current);
-    myChart.setOption(createEchartsOptions({
+  const x=(data)=>{
+    myChart.current.setOption(createEchartsOptions({
       grid: {x: px(20), x2: px(30), y: px(30), y2: px(20), containLabel: true},
       tooltip: {
         trigger: 'item',
@@ -71,6 +72,24 @@ export const Chart13 = () => {
         }]),
       }]
     }));
+  }
+  useEffect(() => {
+    myChart.current = echarts.init(divRef.current);
+    x(data)
+  }, []);
+
+  useEffect(() => {
+    setInterval(() => {
+      const array=rand(5,15,9)
+      const createData=(data)=>{
+        for(let i=0;i<data.length;i++){
+          data[i].value=array[i]
+        }
+        return data
+      }
+      const newData = createData(data)
+      x(newData);
+    }, 4000);
   }, []);
 
   return (
