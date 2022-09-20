@@ -2,11 +2,13 @@ import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import {rand} from '../shared/rand';
 
 // const px = (n) => n / 2420 * (window as any).pageWidth;
 export const Chart2 = () => {
   const divRef = useRef(null);
   const myChart = useRef(null);
+
   const data = [
     {name: '城关区公安局', 2021: 1, 2022: 2},
     {name: '七里河区公安局', 2021:3, 2022: 4},
@@ -20,17 +22,16 @@ export const Chart2 = () => {
   ];
   useEffect(() => {
     setInterval(() => {
-      const newData = [
-        {name: '城关区公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '七里河区公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '西固区公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '安宁区公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '红古区公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '永登县公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '皋兰县公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '榆中县公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-        {name: '兰州新区公安局', 2021: Math.random() * 10, 2022: Math.random() * 10},
-      ];
+      const array1=rand(5,15,9)
+      const array2=rand(10,20,9)
+      const createData=(data)=>{
+        for(let i=0;i<data.length;i++){
+          data[i]['2021']=array1[i]
+          data[i]['2022']=array2[i]
+        }
+        return data
+      }
+      const newData = createData(data)
       x(newData);
     }, 3000);
   }, []);

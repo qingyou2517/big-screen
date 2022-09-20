@@ -2,13 +2,16 @@ import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import {rand} from '../shared/rand';
 
-// const px = (n) => n / 2420 * (window as any).pageWidth;
-export const Chart1=()=>{
+
+export const Chart1 = () => {
   const divRef = useRef(null);
-  useEffect(() => {
-    const myChart = echarts.init(divRef.current);
-    myChart.setOption(createEchartsOptions({
+  const myChart = useRef(null);
+
+  const data = [10, 20, 36, 41, 15, 26, 37, 18, 29];
+  const x=(data)=>{
+    myChart.current.setOption(createEchartsOptions({
 
       xAxis: {
         data: ['城关区', '七里河区', '西固区', '安宁区', '红谷区', '永登区', '皋兰区', '榆中区', '兰州新区'],
@@ -26,9 +29,9 @@ export const Chart1=()=>{
               return val;
             }
           },
-          margin:px(12),
-          lineHeight:px(16),
-          interval:0,
+          margin: px(12),
+          lineHeight: px(16),
+          interval: 0,
         },
       },
       grid: {
@@ -36,10 +39,6 @@ export const Chart1=()=>{
         y: px(30),
         x2: px(20),
         y2: px(65),
-        // left:px(60),
-        // top:px(30),
-        // bottom:px(60),
-        // right:px(30)
       },
       yAxis: {
         splitLine: {show: false},
@@ -49,23 +48,41 @@ export const Chart1=()=>{
         },
         axisLabel: {
           fontSize: px(12),
-          show:true,
-          margin:px(16)
+          show: true,
+          margin: px(16)
         }
       },
       series: [{
         type: 'bar',
-        data: [10, 20, 36, 41, 15, 26, 37, 18, 29]
+        data: data
       }]
     }));
+  }
+  useEffect(() => {
+    myChart.current = echarts.init(divRef.current);
+    x(data)
   }, []);
 
-  return(
+  useEffect(() => {
+    setInterval(() => {
+      const array=rand(20,50,9)
+      const createData=(data)=>{
+        for(let i=0;i<data.length;i++){
+          data[i]=array[i]
+        }
+        return data
+      }
+      const newData = createData(data)
+      x(newData);
+    }, 3000);
+  }, []);
+
+  return (
     <div className="bordered 管辖统计">
       <h2>案发派出所管辖统计</h2>
       <div ref={divRef} className="chart">
 
       </div>
     </div>
-  )
-}
+  );
+};
