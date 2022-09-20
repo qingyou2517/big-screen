@@ -1,8 +1,9 @@
 import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
+import {px} from '../shared/px';
 
-const px = (n) => n / 2420 * (window as any).pageWidth;
+// const px = (n) => n / 2420 * (window as any).pageWidth;
 export const Chart2 = () => {
   const divRef = useRef(null);
   useEffect(() => {
