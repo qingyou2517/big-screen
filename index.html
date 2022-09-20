@@ -15,6 +15,25 @@
     }</style>`
     document.write(string)
   </script>
+
+  <script>
+    let t = null
+    t = setTimeout(time, 1000)
+
+    function time() {
+      clearTimeout(t)  //清除定时器
+      let dt = new Date()
+      let y = dt.getFullYear()
+      let mt = dt.getMonth() + 1
+      let day = dt.getDate()
+      let h = dt.getHours()  //获取时
+      let m = dt.getMinutes()  //获取分
+      let s = dt.getSeconds()  //获取秒
+
+      document.querySelector('.showTime').innerHTML = y + ' 年 ' + mt + ' 月 ' + day + ' 日 ' + '\t' + h + '：' + m + '：' + s
+      t = setTimeout(time, 1000)  //设定定时器，循环运行
+    }
+  </script>
 </head>
 <body>
 <div id="root"></div>

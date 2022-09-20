@@ -18,6 +18,7 @@
 }
 
 .home {
+  position: relative;
   flex: 1;
 
   display: flex;
@@ -31,6 +32,23 @@
     background-size: cover;
     width: px(2420);
     margin: 0 auto;
+  }
+  >.遮挡{
+    position: absolute;
+    width: px(160);
+    height: px(30);
+    left: px(1545);
+    top: px(65);
+    background: linear-gradient(90deg, rgba(0,12,46,1) 0%, rgba(0,5,21,1) 35%, rgba(0,5,21,1) 100%);
+  }
+  .showTime{
+    //border: 1px solid red;
+    position: absolute;
+    width: px(560);
+    left: px(245);
+    top: px(10);
+    font-size: px(20);
+    color: #8fd0fd;
   }
 
   > footer {

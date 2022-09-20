@@ -21,6 +21,8 @@ export const Home = () => {
   return (
     <div className="home">
       <header style={{backgroundImage: `url(${headerBg})`}}/>
+      <div className='遮挡'></div>
+      <div className='showTime'></div>
       <main>
         <section className="section1">
           <Chart1 />

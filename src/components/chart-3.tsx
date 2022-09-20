@@ -42,35 +42,35 @@ export const Chart3 = () => {
         {
           name: '抢劫',
           type: 'line',
-          smooth: true,
+          // smooth: true,
           stack:'all',
           data: [0.01, 0.02, 0.01, 0.02, 0.05, 0.01, 0.02, 0.01, 0.02].reverse()
         },
         {
           name: '醉驾',
           type: 'line',
-          smooth: true,
+          // smooth: true,
           stack:'all',
           data: [0.02, 0.03, 0.04, 0.02, 0.01, 0.03, 0.02, 0.05, 0.04].reverse()
         },
         {
           name: '盗窃',
           type: 'line',
-          smooth: true,
+          // smooth: true,
           stack:'all',
           data: [0.03, 0.04, 0.05, 0.06, 0.01, 0.04, 0.04, 0.06, 0.06].reverse()
         },
         {
           name: '故意杀人',
           type: 'line',
-          smooth: true,
+          // smooth: true,
           stack:'all',
           data: [0.01, 0.02, 0.06, 0.01, 0.02, 0.07, 0.01, 0.02, 0.05].reverse()
         },
         {
           name: '故意伤人',
           type: 'line',
-          smooth: true,
+          // smooth: true,
           stack:'all',
           data: [0.01, 0.06, 0.03, 0.04, 0.03, 0.06, 0.02, 0.04, 0.05].reverse()
         }
