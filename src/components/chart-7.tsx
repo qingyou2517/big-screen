@@ -2,12 +2,15 @@ import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import {rand} from '../shared/rand';
 
 export const Chart7 = () => {
   const divRef = useRef(null);
-  useEffect(() => {
-    const myChart = echarts.init(divRef.current);
-    myChart.setOption(createEchartsOptions({
+  const myChart = useRef(null);
+  const data = [{value: 6, name: '女'}, {value: 14, name: '男'},];
+
+  const x = (data) => {
+    myChart.current.setOption(createEchartsOptions({
       color: ['#8D70F8', '#33A4FA'],
       xAxis: {show: false},
       yAxis: {show: false},
@@ -20,7 +23,11 @@ export const Chart7 = () => {
           label: {
             show: true, position: 'inside', textStyle: {color: 'white', fontSize: px(20)},
             formatter(options) {
-              return options.value * 100 + '%';
+              let sum = 0;
+              for (let i = 0; i < data.length; i++) {
+                sum += data[i].value;
+              }
+              return (options.value / sum * 100).toFixed(0) + '%';
             }
           },
           labelLine: {show: false},
@@ -28,13 +35,29 @@ export const Chart7 = () => {
             borderColor: '#0F113A',
             borderWidth: px(4)
           },
-          data: [
-            {value: 0.2, name: '女'},
-            {value: 0.8, name: '男'},
-          ]
+          data: data
         }
       ]
     }));
+  }
+
+  useEffect(() => {
+    myChart.current = echarts.init(divRef.current);
+    x(data);
+  }, []);
+
+  useEffect(() => {
+    setInterval(() => {
+      const createData = (data) => {
+        const female= rand(5, 10, 1)[0];
+        const male = rand(6, 15, 1)[0];
+        data[0].value= female;
+        data[1].value = male;
+        return data;
+      };
+      const newData = createData(data);
+      x(newData);
+    }, 3000);
   }, []);
 
   return (
