@@ -18,7 +18,7 @@
 
   <script>
     let t = null
-    t = setTimeout(time, 1000)
+    t = setTimeout(time, 0) //进入页面就开始渲染时钟
 
     function time() {
       clearTimeout(t)  //清除定时器
@@ -36,11 +36,12 @@
       let hash = ['日', '一', '二', '三', '四', '五', '六']
       const week = new Date().getDay()
       const str = '周' + hash[week]
+
+      setTimeout(time, 1000)  //设定定时器，循环运行
+
       document.querySelector('.showTime').innerHTML = h + ':' + m + ':' + s
       document.querySelector('.showDate').innerHTML = y + ' 年 ' + mt + ' 月 ' + day + ' 日 '
       document.querySelector('.showWeekday').innerHTML=str
-
-      t = setTimeout(time, 1000)  //设定定时器，循环运行
     }
   </script>
 </head>
